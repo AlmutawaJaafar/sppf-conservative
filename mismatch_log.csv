@@ -1,0 +1,3 @@
+case,NEES_unc,Cov_unc,c_star,NEES_inf,Cov_inf,flag,T
+matched,7.81,0.898,0.3,0.559,0.992,ok,120
+mismatched,7.13,0.898,0.3,0.510,0.989,ok,100
