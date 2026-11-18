@@ -1,0 +1,13 @@
+name: reproduce-tables-and-figures
+on: [push, pull_request]
+jobs:
+  quick:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -r requirements.txt
+      - run: sha256sum -c results/SHA256SUMS
+      - run: ./run_all.sh quick

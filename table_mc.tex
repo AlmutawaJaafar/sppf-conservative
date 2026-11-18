@@ -1,0 +1,23 @@
+\begin{tabular}{lccccc}
+\toprule
+ & low noise & diffuse start & $b=1$ & $\gamma_t$ growing & $\gamma_t$ growing \\
+\midrule
+P\'eclet number & 10 & 10 & 10 & 10 & 50 \\
+$n$ & 240 & 600 & 600 & 600 & 1200 \\
+$b$ & 2 & 2 & 1 & 3 & 2 \\
+steps $T$ & 150 & 150 & 600 & 600 & 600 \\
+trajectories & 2000 & 2000 & 2000 & 2000 & 1000 \\
+$\gamma_T$ & $2.2{\times}10^{4}$ & $4.2{\times}10^{10}$ & 4.47 & 1.89 & 63.8 \\
+\midrule
+certified, worst functional & 0.935 & 0.949 & 0.941 & 0.938 & 0.941 \\
+certified, domain mean & 0.940 & 0.946 & 0.955 & 0.946 & 0.948 \\
+certified, far from sensors & 0.939 & 0.942 & 0.954 & 0.943 & 0.960 \\
+uncorrected, worst functional & 0.160 & 0.011 & 0.776 & 0.930 & 0.925 \\
+uncorrected, domain mean & 0.195 & 0.299 & 0.871 & 0.946 & 0.929 \\
+uncorrected, far from sensors & 0.202 & 0.262 & 0.848 & 0.942 & 0.941 \\
+\midrule
+end of run, certified & 1.000 & 1.000 & 0.995 & 0.993 & 1.000 \\
+end of run, uncorrected & 0.208 & 0.195 & 0.805 & 0.948 & 0.944 \\
+largest $|$empirical $-$ exact$|$ & 0.015 & 0.009 & 0.010 & 0.013 & 0.015 \\
+\bottomrule
+\end{tabular}
