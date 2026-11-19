@@ -9,7 +9,7 @@ data-independent, so S_t, Y_t coincide with those of the closed-loop run. From S
   * optionally, the steady state of the rank-p map with S, Y frozen (iteration), and its price
     sqrt(g + |Z|_F^2 / tr Y^{-1}) - 1 (trace by 64 Rademacher probes, as in E20).
 All eigenvalue problems are solved by ARPACK on matrix-free operators with sparse factorisations; nothing is dense.
-usage: python e25_offline_large.py b T [p1,p2 [safe]]  ->  results/e25_offline_large_b<b>[_safe].json
+usage: python e25_offline_large.py b T [p1,p2 [safe [tag]]]  ->  results/e25_offline_large_b<b>[_safe][tag].json
 (safe: the safety factor of the closed-loop low-rank certificate of E20, 1 + 1e-3, applied in the rank-p map)
 """
 import sys, time, json, numpy as np, scipy.sparse as sp
@@ -18,7 +18,7 @@ sys.path.insert(0, ".")
 from sppf_certified import lap1d, upwind1d
 from e20_large import ldl_posdef
 
-def main(b=3, T=300, ranks=(), safe=1.0, Nx=100, Ny=100, Fo=0.01, Pe=50.0, sw=0.05, sv=0.5, p0=0.01, seed=0, maxit=400):
+def main(b=3, T=300, ranks=(), safe=1.0, tag="", Nx=100, Ny=100, Fo=0.01, Pe=50.0, sw=0.05, sv=0.5, p0=0.01, seed=0, maxit=400):
     t_all = time.perf_counter()
     rng = np.random.default_rng(seed); n = Nx * Ny; q = sw ** 2
     Ix, Iy = sp.identity(Nx), sp.identity(Ny)
@@ -82,9 +82,9 @@ def main(b=3, T=300, ranks=(), safe=1.0, Nx=100, Ny=100, Fo=0.01, Pe=50.0, sw=0.
         print(out, flush=True)
     out["t_run"] = t_run; out["sec"] = time.perf_counter() - t_all
     print(out, flush=True)
-    json.dump(out, open(f"results/e25_offline_large_b{b}" + ("_safe" if safe != 1.0 else "") + ".json", "w"))
+    json.dump(out, open(f"results/e25_offline_large_b{b}" + ("_safe" if safe != 1.0 else "") + tag + ".json", "w"))
     return out
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    main(int(a[0]), int(a[1]), tuple(int(v) for v in a[2].split(",")) if len(a) > 2 else (), float(a[3]) if len(a) > 3 else 1.0)
+    main(int(a[0]), int(a[1]), tuple(int(v) for v in a[2].split(",")) if len(a) > 2 else (), float(a[3]) if len(a) > 3 else 1.0, a[4] if len(a) > 4 else "")

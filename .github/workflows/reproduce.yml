@@ -10,4 +10,4 @@ jobs:
           python-version: "3.13"
       - run: pip install -r requirements.txt
       - run: sha256sum -c results/SHA256SUMS
-      - run: ./run_all.sh quick
+      - run: bash run_all.sh quick

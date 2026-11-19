@@ -40,6 +40,8 @@ if [ "$mode" = "full" ]; then
   python e25_offline_large.py 5 300
   python e25_offline_large.py 3 300 20 1.001
   python e25_offline_large.py 1 300
+  python e25_offline_large.py 2 300 5 1.0 _r5
+  python e25_offline_large.py 2 300 5 1.001 _r5
   python e26_variants.py cn
   python e26_variants.py tv
   python e38_adaptive_inflation.py

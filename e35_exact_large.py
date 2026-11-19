@@ -9,6 +9,8 @@ relative to the Kalman filter  (tr C / tr P^KF)^{1/2} - 1  with tr Y^{-1} comput
 With 'sharp', the scalar certificate is the sharp one, gamma_t >= lmax(Y_t^{-1}(S_t P^c S_t + J)) (Theorem 1(a)), estimated by
 Lanczos on the pencil and accepted only after the sparse LDL' test of the sharp form of Lemma 3(a),
   [[Y_{t-1}/gamma_{t-1}, F'S_t], [S_t F, g Y_t - J - q S_t^2]] >= 0  (order 2n; up to 12 attempts g = theta (1 + 1e-3 2^j)).
+The sharp mode draws no Lanczos start vector, so its Monte Carlo trajectories differ from the basic run's; the exact moments
+of the uncorrected filter are identical.
 usage: python e35_exact_large.py Nx Ny b T N [ranks] [sharp]   (resumes from results/e35_state_*.pkl after an interruption; dense moments in float32, ~1.5 GB RAM; ~20 s per step at n=10^4 plus ~2 min per checkpoint, every 50 steps)
 """
 import sys, time, json, numpy as np, scipy.sparse as sp
